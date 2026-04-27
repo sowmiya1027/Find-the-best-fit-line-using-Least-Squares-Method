@@ -27,24 +27,22 @@ RegisterNumber: 212225040420
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Sample dataset (Univariate)
-x = np.array([1, 2, 3, 4, 5])     # Input feature
-y = np.array([2, 4, 5, 4, 5])     # Target values
+x = np.array([1, 2, 3, 4, 5])     
+y = np.array([2, 4, 5, 4, 5])     
 
-# Number of observations
+x_mean = np.mean(x)
+y_mean = np.mean(y)
+
 n = len(x)
 
-# Calculate slope (m) and intercept (c)
-m = (n * np.sum(x * y) - np.sum(x) * np.sum(y)) / (n * np.sum(x ** 2) - (np.sum(x)) ** 2)
-c = (np.sum(y) - m * np.sum(x)) / n
+m = np.sum((x - x_mean) * (y - y_mean)) / np.sum((x - x_mean) ** 2)
+c = y_mean - m * x_mean
 
 print(f"Slope (m): {m}")
 print(f"Intercept (c): {c}")
 
-# Predict y values
 y_pred = m * x + c
 
-# Plot the data points and regression line
 plt.scatter(x, y, color='blue', label='Actual data')
 plt.plot(x, y_pred, color='red', label='Fitted line')
 plt.xlabel('X')
@@ -56,7 +54,8 @@ plt.show()
 
 
 ## Output:
-![best fit line](sam.png)
+<img width="806" height="612" alt="Screenshot 2026-04-27 190146" src="https://github.com/user-attachments/assets/d115e521-2616-463d-9c2a-e347b23b328b" />
+
 
 
 ## Result:
